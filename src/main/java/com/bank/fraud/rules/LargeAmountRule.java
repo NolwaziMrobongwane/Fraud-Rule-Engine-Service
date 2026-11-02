@@ -1,0 +1,14 @@
+package main.java.com.bank.fraud.rules;
+
+import main.java.com.bank.fraud.domain.Transaction;
+
+public class LargeAmountRule implements FraudRule {
+    @Override
+    public boolean isFraud(Transaction t) {
+        return t.amount > 20000;
+    }
+    @Override
+    public String getReason() {
+        return "Amount exceeds R20 000 limit";
+    }
+}
