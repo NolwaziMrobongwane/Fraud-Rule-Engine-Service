@@ -1,4 +1,4 @@
-package main.java.com.bank.fraud.rules;
+package com.bank.fraud.rules;
 
 public class ForeignLocationRule {
     

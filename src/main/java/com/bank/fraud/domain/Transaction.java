@@ -1,4 +1,4 @@
-package main.java.com.bank.fraud.domain;
+package com.bank.fraud.domain;
 
 public class Transaction {
     public String transactionId;
