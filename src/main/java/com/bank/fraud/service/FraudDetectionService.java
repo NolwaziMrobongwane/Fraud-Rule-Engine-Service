@@ -1,4 +1,4 @@
-package main.java.com.bank.fraud.service;
+package com.bank.fraud.service;
 
 public class FraudDetectionService {
     
