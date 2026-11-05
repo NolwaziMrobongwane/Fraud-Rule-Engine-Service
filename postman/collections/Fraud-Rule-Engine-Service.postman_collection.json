@@ -1,0 +1,44 @@
+{
+  "info": {
+    "name": "Fraud-Rule-Engine-Service",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "1 - High Amount BLOCKED",
+      "request": {
+        "method": "POST",
+        "url": "http://localhost:8080/api/fraud/check",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n \"accountId\": \"ACC-001\",\n \"amount\": 85000,\n \"transactionId\": \"TXN-001\"\n}"
+        }
+      }
+    },
+    {
+      "name": "2 - Normal Amount APPROVED",
+      "request": {
+        "method": "POST",
+        "url": "http://localhost:8080/api/fraud/check",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n \"accountId\": \"ACC-001\",\n \"amount\": 5000,\n \"transactionId\": \"TXN-002\"\n}"
+        }
+      }
+    },
+    {
+      "name": "3 - Frequency - 7 in 1 hour BLOCKED",
+      "request": {
+        "method": "POST",
+        "url": "http://localhost:8080/api/fraud/check",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n \"accountId\": \"ACC-FREQUENCY\",\n \"amount\": 1000,\n \"transactionId\": \"TXN-FREQUENCY-1\"\n}"
+        }
+      }
+    }
+  ]
+}
