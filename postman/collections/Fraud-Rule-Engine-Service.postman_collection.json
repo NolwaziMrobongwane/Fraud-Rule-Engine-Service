@@ -1,42 +1,78 @@
 {
   "info": {
-    "name": "Fraud-Rule-Engine-Service",
+    "name": "Fraud Rule Engine Service",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
   },
   "item": [
     {
-      "name": "1 - High Amount BLOCKED",
+      "name": "1 - Clean Transaction - NOT flagged",
       "request": {
         "method": "POST",
-        "url": "http://localhost:8080/api/fraud/check",
         "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "url": "http://localhost:8080/api/fraud/check",
         "body": {
           "mode": "raw",
-          "raw": "{\n \"accountId\": \"ACC-001\",\n \"amount\": 85000,\n \"transactionId\": \"TXN-001\"\n}"
+          "raw": "{\"id\":\"TXN-002\",\"customerId\":\"CUST-001\",\"amount\":5000,\"location\":\"SA\",\"hour\":10,\"transactionsInLastHour\":1}"
         }
       }
     },
     {
-      "name": "2 - Normal Amount APPROVED",
+      "name": "2 - Large Amount - flagged",
       "request": {
         "method": "POST",
-        "url": "http://localhost:8080/api/fraud/check",
         "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "url": "http://localhost:8080/api/fraud/check",
         "body": {
           "mode": "raw",
-          "raw": "{\n \"accountId\": \"ACC-001\",\n \"amount\": 5000,\n \"transactionId\": \"TXN-002\"\n}"
+          "raw": "{\"id\":\"TXN-003\",\"customerId\":\"CUST-001\",\"amount\":25000,\"location\":\"SA\",\"hour\":10,\"transactionsInLastHour\":1}"
         }
       }
     },
     {
-      "name": "3 - Frequency - 7 in 1 hour BLOCKED",
+      "name": "3 - Odd Hour - flagged",
       "request": {
         "method": "POST",
-        "url": "http://localhost:8080/api/fraud/check",
         "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "url": "http://localhost:8080/api/fraud/check",
         "body": {
           "mode": "raw",
-          "raw": "{\n \"accountId\": \"ACC-FREQUENCY\",\n \"amount\": 1000,\n \"transactionId\": \"TXN-FREQUENCY-1\"\n}"
+          "raw": "{\"id\":\"TXN-004\",\"customerId\":\"CUST-001\",\"amount\":5000,\"location\":\"SA\",\"hour\":2,\"transactionsInLastHour\":1}"
+        }
+      }
+    },
+    {
+      "name": "4 - Foreign Location - flagged",
+      "request": {
+        "method": "POST",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "url": "http://localhost:8080/api/fraud/check",
+        "body": {
+          "mode": "raw",
+          "raw": "{\"id\":\"TXN-005\",\"customerId\":\"CUST-001\",\"amount\":5000,\"location\":\"USA\",\"hour\":10,\"transactionsInLastHour\":1}"
+        }
+      }
+    },
+    {
+      "name": "5 - High Frequency - flagged",
+      "request": {
+        "method": "POST",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "url": "http://localhost:8080/api/fraud/check",
+        "body": {
+          "mode": "raw",
+          "raw": "{\"id\":\"TXN-006\",\"customerId\":\"CUST-001\",\"amount\":5000,\"location\":\"SA\",\"hour\":10,\"transactionsInLastHour\":5}"
+        }
+      }
+    },
+    {
+      "name": "6 - All 4 Rules - flagged",
+      "request": {
+        "method": "POST",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "url": "http://localhost:8080/api/fraud/check",
+        "body": {
+          "mode": "raw",
+          "raw": "{\"id\":\"TXN-001\",\"customerId\":\"CUST-001\",\"amount\":25000,\"location\":\"USA\",\"hour\":2,\"transactionsInLastHour\":5}"
         }
       }
     }
