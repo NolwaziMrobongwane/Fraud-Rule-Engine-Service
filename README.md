@@ -60,8 +60,8 @@ Field descriptions:
 
 Tech Stack
 
-- Java 17
-- Spring Boot 3.2.5
+- Java 21
+- Spring Boot 3.4.5
 - Maven
 - Spring Web
 - Docker / Rancher Desktop

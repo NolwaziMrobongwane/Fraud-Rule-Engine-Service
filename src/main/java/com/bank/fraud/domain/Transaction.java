@@ -10,6 +10,9 @@ public class Transaction {
     public boolean isFlagged = false;
     public String reason = "";
 
+    public Transaction() {
+    }
+
     public Transaction(String transactionId, String customerId, double amount, String location, int hour, int transactionsInLastHour) {
         this.transactionId = transactionId;
         this.customerId = customerId;
