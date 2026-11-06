@@ -231,6 +231,22 @@ Design Decisions and Assumptions
 - Frequency is passed in: transactionsInLastHour is supplied in the request for simplicity. In production this would be calculated from a database or Redis by counting the customers recent transactions.
 - No authentication: The endpoint is open for assessment purposes. In production it would sit behind an API Gateway with auth.
 
+## Data Store
+Uses H2 in-memory database with Spring Data JPA.
+Transactions are saved on every fraud check.
+
+## API Endpoints
+- POST /api/fraud/check - Check a single transaction and save it
+- POST /api/fraud/check-batch - Check multiple transactions
+- GET /api/fraud/all - Get all saved transactions
+- GET /api/fraud/{id} - Get one saved transaction by ID
+
+## How to Test
+1. Run the app
+2. Open http://localhost:8080/swagger-ui.html
+3. POST /api/fraud/check with TXN-TEST / CUST-001
+4. GET /api/fraud/all to see it saved
+
 Future Improvements
 
 - Externalise thresholds to config
