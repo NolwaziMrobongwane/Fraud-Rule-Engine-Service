@@ -48,7 +48,7 @@ Response Body:
 
 {
 "id": "TXN-002",
-"customerId": "CUST-999",
+"customerId": "CUST-002",
 "amount": 500,
 "location": "South Africa",
 "hour": 10,
@@ -93,17 +93,20 @@ Project Structure
 
 Fraud-Rule-Engine-Service/
 ├── src/main/java/com/bank/fraud/
-│ ├── domain/ Transaction.java
-│ ├── rules/ LargeAmountRule, OddHourRule, ForeignLocationRule, FrequencyRule
-│ ├── service/ FraudDetectionService.java
-│ ├── controller/ FraudController.java
-│ └── FraudRuleEngineApplication.java
-├── src/test/
+│ ├── domain/ http://Transaction.java
+│ ├── rules/ http://LargeAmountRule.java, http://OddHourRule.java, http://ForeignLocationRule.java, http://FrequencyRule.java
+│ ├── service/ http://FraudDetectionService.java, http://CsvTransactionReader.java
+│ ├── controller/ http://FraudController.java
+│ ├── dto/ http://TransactionDto.java
+│ └── http://FraudRuleEngineApplication.java
+├── src/test/java/com/bank/fraud/rules/
+│ └── http://FraudRulesTest.java
+├── http://transactions.csv
 ├── postman/collections/
 ├── Dockerfile
-├── docker-compose.yml
-├── pom.xml
-└── README.md
+├── http://docker-compose.yml
+├── http://pom.xml
+└── http://README.md
 
 How to Build, Run and Test
 
@@ -214,6 +217,12 @@ curl -X POST http://localhost:8080/api/fraud/check -H "Content-Type: application
 Fraud transaction - triggers all 4 rules:
 
 curl -X POST http://localhost:8080/api/fraud/check -H "Content-Type: application/json" -d '{"id":"TXN-001","customerId":"CUST-001","amount":25000,"location":"USA","hour":2,"transactionsInLastHour":5}'
+
+## Features
+- Rule engine with 4 fraud rules (large amount, foreign location, odd hour, high frequency)
+- JUnit tests for all rules — 4 tests passing
+- CSV batch upload via POST /api/fraud/check-batch
+- DTO + Jakarta Validation on POST /api/fraud/check (400 on invalid input)
 
 Design Decisions and Assumptions
 
