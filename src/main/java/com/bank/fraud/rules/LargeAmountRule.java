@@ -5,7 +5,7 @@ import com.bank.fraud.domain.Transaction;
 public class LargeAmountRule implements FraudRule {
     @Override
     public boolean isFraud(Transaction t) {
-        return t.amount > 20000;
+        return t.getAmount() > 20000;
     }
     @Override
     public String getReason() {

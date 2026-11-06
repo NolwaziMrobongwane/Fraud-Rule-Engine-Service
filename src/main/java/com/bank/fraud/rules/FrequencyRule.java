@@ -6,8 +6,8 @@ public class FrequencyRule implements FraudRule{
     @Override
     public boolean isFraud(Transaction t){
         // If client did more than 3 transactions in the last hour = suspicious frequency
-        // Capietc would flag this as potential card testing / attempted depletion of client funds
-        return t.transactionsInLastHour > 3;
+        // Capitec would flag this as potential card testing / attempt to deplete client funds
+        return t.getTransactionsInLastHour() > 3;
     }
     @Override
     public String getReason() {

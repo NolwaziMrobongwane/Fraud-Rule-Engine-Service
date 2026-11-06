@@ -6,7 +6,7 @@ public class OddHourRule implements FraudRule {
     @Override 
     public boolean isFraud(Transaction t) {
         //suspicious if the transaction happens between 12am and 4am
-        return t.hour >= 0 && t.hour <= 4;
+        return t.getHour() >= 0 && t.getHour() <= 4;
     }
     @Override
     public String getReason() {

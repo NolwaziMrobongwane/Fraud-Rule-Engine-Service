@@ -1,11 +1,9 @@
 # Fraud-Rule-Engine-Service
  A system that processes categorised transaction events and flags potential fraud.
 
-# Fraud Rule Engine Service
-
 A Spring Boot microservice that evaluates incoming transactions in real-time and flags them as fraud or not.
 
-Built for the Capitec Technical Assessment - demonstrates clean rule-based design, API testing, containerisation, and API documentation.
+Demonstrates clean rule-based design, API testing, containerisation, and API documentation.
 
 ## How It Works
 
@@ -46,6 +44,28 @@ Response Body:
 "transactionsInLastHour": 5,
 "isFlagged": true,
 "reason": "Large amount over 20000; Odd hour transaction; Foreign location; High frequency: more than 3 transactions in last hour; "
+}
+
+{
+"id": "TXN-002",
+"customerId": "CUST-999",
+"amount": 500,
+"location": "South Africa",
+"hour": 10,
+"transactionsInLastHour": 1
+}
+
+Response Body:
+
+{
+"id": "TXN-002",
+"customerId": "CUST-999",
+"amount": 500,
+"location": "South Africa",
+"hour": 10,
+"transactionsInLastHour": 1,
+"isFlagged": false,
+"reason": ""
 }
 
 Field descriptions:
@@ -92,6 +112,7 @@ How to Build, Run and Test
 - Java 17 or higher
 - Maven
 - Docker + Rancher Desktop (for container run)
+- Swagger UI 
 - Postman (optional, for manual testing)
 
 Check versions:

@@ -20,8 +20,9 @@ public class FraudDetectionService {
     public Transaction check(Transaction t) {
         for (FraudRule rule : rules) {
             if (rule.isFraud(t)) {
-                t.isFlagged = true;
-                t.reason += rule.getReason() + "; ";
+                t.setFlagged(true);
+                t.setReason(t.getReason() +
+                rule.getReason() + "; ");
             }
         }
         return t;
