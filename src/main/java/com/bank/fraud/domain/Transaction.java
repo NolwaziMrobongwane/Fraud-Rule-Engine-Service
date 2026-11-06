@@ -2,14 +2,25 @@ package com.bank.fraud.domain;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 
 @JsonPropertyOrder({"transactionId", "customerId", "amount", "location", "hour", "transactionsInLastHour", "isFlagged", "reason"})
+@Entity
+@Table(name = "transactions")
 public class Transaction {
+
+    @Id
     private String transactionId;
     private String customerId;
     private double amount;
     private String location;
+
+    @Column(name = "txn_hour")
     private int hour;
+
     private int transactionsInLastHour;
     private boolean isFlagged = false;
     private String reason = "";
@@ -26,29 +37,30 @@ public class Transaction {
         this.transactionsInLastHour = transactionsInLastHour;
     }
 
-    public String getTransactionId() { return transactionId;}
-    public void setTransactionId(String transactionId) { this.transactionId = transactionId;}
+    public String getTransactionId() { return transactionId; }
+    public void setTransactionId(String transactionId) { this.transactionId = transactionId; }
 
-    public String getCustomerId() { return customerId;}
-    public void setCustomerId(String customerId) { this.customerId = customerId;}
+    public String getCustomerId() { return customerId; }
+    public void setCustomerId(String customerId) { this.customerId = customerId; }
 
-    public double getAmount() { return amount;}
-    public void setAmount(double amount) { this.amount = amount;}
+    public double getAmount() { return amount; }
+    public void setAmount(double amount) { this.amount = amount; }
 
-    public String getLocation() { return location;}
-    public void setLocation(String location) { this.location = location;}
+    public String getLocation() { return location; }
+    public void setLocation(String location) { this.location = location; }
 
-    public int getHour() { return hour;}
-    public void setHour(int hour) { this.hour = hour;}
+    public int getHour() { return hour; }
+    public void setHour(int hour) { this.hour = hour; }
 
-    public int getTransactionsInLastHour() { return transactionsInLastHour;}
-    public void setTransactionsInLastHour(int transactionsInLastHour) { this.transactionsInLastHour = transactionsInLastHour;}
+    public int getTransactionsInLastHour() { return transactionsInLastHour; }
+    public void setTransactionsInLastHour(int transactionsInLastHour) { this.transactionsInLastHour = transactionsInLastHour; }
 
     @JsonProperty("isFlagged")
-    public boolean isFlagged() { return isFlagged;}
-    @JsonProperty("isFlagged")
-    public void setFlagged(boolean flagged) { isFlagged = flagged;}
+    public boolean isFlagged() { return isFlagged; }
 
-    public String getReason() { return reason;}
-    public void setReason(String reason) { this.reason = reason;}
+    @JsonProperty("isFlagged")
+    public void setFlagged(boolean flagged) { isFlagged = flagged; }
+
+    public String getReason() { return reason; }
+    public void setReason(String reason) { this.reason = reason; }
 }
