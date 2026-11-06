@@ -93,20 +93,20 @@ Project Structure
 
 Fraud-Rule-Engine-Service/
 ├── src/main/java/com/bank/fraud/
-│ ├── domain/ http://Transaction.java
-│ ├── rules/ http://LargeAmountRule.java, http://OddHourRule.java, http://ForeignLocationRule.java, http://FrequencyRule.java
-│ ├── service/ http://FraudDetectionService.java, http://CsvTransactionReader.java
-│ ├── controller/ http://FraudController.java
-│ ├── dto/ http://TransactionDto.java
-│ └── http://FraudRuleEngineApplication.java
+│ ├── domain/ Transaction.java
+│ ├── rules/ LargeAmountRule.java, OddHourRule.java, ForeignLocationRule.java, FrequencyRule.java
+│ ├── service/ FraudDetectionService.java, CsvTransactionReader.java
+│ ├── controller/ FraudController.java
+│ ├── dto/ TransactionDto.java
+│ └── FraudRuleEngineApplication.java
 ├── src/test/java/com/bank/fraud/rules/
-│ └── http://FraudRulesTest.java
-├── http://transactions.csv
+│ └── FraudRulesTest.java
+├── transactions.csv
 ├── postman/collections/
 ├── Dockerfile
-├── http://docker-compose.yml
-├── http://pom.xml
-└── http://README.md
+├── docker-compose.yml
+├── pom.xml
+└── README.md
 
 How to Build, Run and Test
 
