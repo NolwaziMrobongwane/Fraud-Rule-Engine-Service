@@ -1,8 +1,10 @@
 package com.bank.fraud.controller;
 
 import com.bank.fraud.domain.Transaction;
+import com.bank.fraud.dto.TransactionDto;
 import com.bank.fraud.service.CsvTransactionReader;
 import com.bank.fraud.service.FraudDetectionService;
+import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import java.util.List;
@@ -20,7 +22,14 @@ public class FraudController {
     }
 
     @PostMapping("/check")
-    public Transaction checkTransaction(@RequestBody Transaction transaction) {
+    public Transaction checkTransaction(@Valid @RequestBody TransactionDto dto) {
+        Transaction transaction = new Transaction();
+        transaction.setTransactionId(dto.transactionId);
+        transaction.setCustomerId(dto.customerId);
+        transaction.setAmount(dto.amount);
+        transaction.setLocation(dto.location);
+        transaction.setHour(dto.hour);
+        transaction.setTransactionsInLastHour(dto.transactionsInLastHour);
         return fraudDetectionService.check(transaction);
     }
 
