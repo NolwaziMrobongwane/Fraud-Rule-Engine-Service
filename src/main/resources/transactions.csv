@@ -1,6 +1,6 @@
 transactionId,customerId,amount,location,hour,transactionsInLastHour
 TXN001,CUST001,250.00,South Africa,14,1
-TXN002,CUST001,85000.00,South Africa,14,1
+TXN002,CUST001,85000.00,SA,14,1
 TXN003,CUST002,500.00,South Africa,3,1
 TXN004,CUST003,300.00,South Africa,15,8
 TXN005,CUST004,12000.00,Russia,2,6
