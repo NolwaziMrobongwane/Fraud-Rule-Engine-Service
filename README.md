@@ -32,9 +32,10 @@ Request Body:
 "hour": 2,
 "transactionsInLastHour": 5
 }
+```
 
 Response Body:
-
+```json
 {
 "id": "TXN-001",
 "customerId": "CUST-001",
@@ -54,9 +55,10 @@ Response Body:
 "hour": 10,
 "transactionsInLastHour": 1
 }
+```
 
 Response Body:
-
+```json
 {
 "id": "TXN-002",
 "customerId": "CUST-999",
@@ -67,6 +69,7 @@ Response Body:
 "isFlagged": false,
 "reason": ""
 }
+```
 
 Field descriptions:
 - id - Unique identifier for the transaction
