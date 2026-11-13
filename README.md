@@ -92,9 +92,10 @@ Tech Stack
 - Swagger / OpenAPI for API documentation
 - JUnit 5 for unit tests
 
-Project Structure
+## Project Structure
 
 Fraud-Rule-Engine-Service/
+```text
 ├── src/main/java/com/bank/fraud/
 │ ├── domain/ Transaction.java
 │ ├── rules/ LargeAmountRule.java, OddHourRule.java, ForeignLocationRule.java, FrequencyRule.java
@@ -110,10 +111,11 @@ Fraud-Rule-Engine-Service/
 ├── docker-compose.yml
 ├── pom.xml
 └── README.md
+```
 
-How to Build, Run and Test
+## How to Build, Run and Test
 
-1. Prerequisites
+### 1. Prerequisites
 
 - Java 17 or higher
 - Maven
@@ -121,19 +123,19 @@ How to Build, Run and Test
 - Swagger UI 
 - Postman (optional, for manual testing)
 
-Check versions:
+#### Check versions:
 
 java -version
 mvn -version
 docker --version
 
-2. Build the Project
+### 2. Build the Project
 
 mvn clean install
 
 This compiles the code and runs all unit tests.
 
-3. Run Locally (Without Docker)
+### 3. Run Locally (Without Docker)
 
 mvn spring-boot:run
 
@@ -145,7 +147,7 @@ curl -X POST http://localhost:8080/api/fraud/check -H "Content-Type: application
 
 Expected: isFlagged false
 
-4. Run with Docker (Rancher Desktop)
+### 4. Run with Docker (Rancher Desktop)
 
 Make sure Rancher Desktop is running and set to dockerd (moby) container runtime.
 
@@ -167,11 +169,11 @@ Stop the container:
 
 docker-compose down
 
-5. Run Tests
+### 5. Run Tests
 
-Run all unit tests:
+### Run all unit tests:
 
-mvn test
+### mvn test
 
 Tests cover:
 - LargeAmountRule flags greater than 20000, passes 20000 and below
@@ -180,7 +182,7 @@ Tests cover:
 - FrequencyRule flags transactionsInLastHour greater than 3, passes 3 and below
 - FraudDetectionService returns correct isFlagged and reason
 
-API Testing
+### API Testing
 
 Option A: Postman
 
@@ -188,7 +190,7 @@ A ready-made collection is included in this repo:
 
 File: postman/collections/Fraud-Rule-Engine-Service.postman_collection.json
 
-How to use:
+### How to use:
 1. Open Postman - Import - Select the file above
 2. Make sure the app is running on http://localhost:8080
 3. Run the requests in order:
@@ -198,7 +200,7 @@ How to use:
 - 4 - Foreign Location - Sends USA - expect isFlagged true
 - 5 - High Frequency - Sends transactionsInLastHour 5 - expect isFlagged true
 
-Option B: Swagger / OpenAPI
+### Option B: Swagger / OpenAPI
 
 Swagger UI is available when the app is running. No Postman needed.
 
@@ -211,7 +213,7 @@ From Swagger you can:
 - Click Try it out - Enter a JSON body - Execute
 - See the live response without writing code
 
-Option C: cURL
+### Option C: cURL
 
 Clean transaction (not flagged):
 
@@ -227,7 +229,7 @@ curl -X POST http://localhost:8080/api/fraud/check -H "Content-Type: application
 - CSV batch upload via POST /api/fraud/check-batch
 - DTO + Jakarta Validation on POST /api/fraud/check (400 on invalid input)
 
-Design Decisions and Assumptions
+## Design Decisions and Assumptions
 
 - Rule-based design: Each rule implements a common FraudRule interface, so new rules can be added without modifying FraudDetectionService.
 - Thresholds are hardcoded: Amount threshold (20000), odd hours (0-4), SA check, and frequency limit (3/hour) are hardcoded for the assessment. In production these would be externalised to http://application.yml or a config service.
@@ -250,7 +252,7 @@ Transactions are saved on every fraud check.
 3. POST /api/fraud/check with TXN-TEST / CUST-001
 4. GET /api/fraud/all to see it saved
 
-Future Improvements
+## Future Improvements
 
 - Externalise thresholds to config
 - Calculate frequency from Redis / database instead of request input
